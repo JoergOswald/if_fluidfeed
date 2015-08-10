@@ -1,8 +1,6 @@
 <f:layout name="Default" />
 <f:section name="main">
-  {settings -> f:debug(title: 'Settings')}
-  {items -> f:debug(title:'items')}
-  <f:for each="{items}" as="item">
-    <f:link.page pageUid="{settings.flexform.singlePid}" additionalParams="{tx_iffluidfeed_output: '{id: item.Titel}'}">{item.Adresse.locality}</f:link.page><br>
+  <f:for each="{items}" as="item" iteration="itemIndex">
+  	<f:render partial="List/Item" arguments="{item:item,itemIndex:itemIndex,settings:settings}" />
   </f:for>
 </f:section>

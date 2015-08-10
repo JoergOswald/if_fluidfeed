@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2015-01-29T13:58:20Z" product-name="if_fluidfeed">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-08-10T20:03:08Z" product-name="if_fluidfeed">
 		<header/>
 		<body>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed">
 				<source>Feed</source>
+				<target>Feed</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.title">
 				<source>Title</source>
+				<target>Titel</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.type">
 				<source>Type of Feed</source>
+				<target>Typ des Feeds</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.type.xml">
 				<source>XML</source>
+				<target>XML</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.type.json">
 				<source>JSON</source>
+				<target>JSON</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.url">
 				<source>Url</source>
+				<target>Adresse</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.localfile">
-				<source>Local File (cache disabled)</source>
+				<source>Local File? (cache disabled)</source>
+				<target>Lokale Datei? (cache deaktiviert)</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.wrapper">
 				<source>Wrapper</source>
+				<target>Wrapper</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.outerwrapper">
 				<source>Outerwrapper</source>
+				<target>Äußerer Wrapper (Elternelement in dem Elemente liegen die gezeigt werden sollen)</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.uidentifier">
 				<source>Childnode in each element which acts as identifier (for accessing singleview)</source>
+				<target>Attribut zur Identifizierung für die Einzelansicht</target>
 			</trans-unit>
 		</body>
 	</file>

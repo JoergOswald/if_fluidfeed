@@ -33,6 +33,13 @@ namespace Interfrog\IfFluidfeed\Domain\Model;
 class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * type
+	 *
+	 * @var string
+	 */
+	protected $type = '';
+
+	/**
 	 * url
 	 *
 	 * @var string
@@ -40,18 +47,18 @@ class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $url = '';
 
 	/**
+	 * localfile
+	 *
+	 * @var string
+	 */
+	protected $localfile = '';
+
+	/**
 	 * identifier
 	 *
 	 * @var string
 	 */
 	protected $uidentifier = '';
-
-	/**
-	 * realurl
-	 *
-	 * @var string
-	 */
-	protected $realurl = '';
 
 	/**
 	 * outerwrapper
@@ -66,6 +73,25 @@ class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var string
 	 */
 	protected $wrapper = '';
+
+	/**
+	 * Returns the type
+	 *
+	 * @return string $type
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * Sets the type
+	 *
+	 * @param string $type
+	 * @return void
+	 */
+	public function setType($type) {
+		$this->type = $type;
+	}
 
 	/**
 	 * Returns the url
@@ -84,6 +110,25 @@ class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setUrl($url) {
 		$this->url = $url;
+	}
+
+	/**
+	 * Returns the localfile
+	 *
+	 * @return string $localfile
+	 */
+	public function getLocalfile() {
+		return $this->localfile;
+	}
+
+	/**
+	 * Sets the localfile
+	 *
+	 * @param string $localfile
+	 * @return void
+	 */
+	public function setLocalfile($localfile) {
+		$this->localfile = $localfile;
 	}
 
 	/**
@@ -122,25 +167,6 @@ class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setUidentifier($uidentifier) {
 		$this->uidentifier = $uidentifier;
-	}
-
-	/**
-	 * Returns the realurl
-	 *
-	 * @return string $realurl
-	 */
-	public function getRealurl() {
-		return $this->realurl;
-	}
-
-	/**
-	 * Sets the realurl
-	 *
-	 * @param string $realurl
-	 * @return void
-	 */
-	public function setRealurl($realurl) {
-		$this->realurl = $realurl;
 	}
 
 	/**

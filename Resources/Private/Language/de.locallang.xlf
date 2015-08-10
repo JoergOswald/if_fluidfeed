@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2015-01-29T13:58:20Z" product-name="if_fluidfeed">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-08-10T20:03:08Z" product-name="if_fluidfeed">
 		<header/>
 		<body>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed">
 				<source>Feed</source>
+				<target>Feed</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.mode">
 				<source>Select Mode</source>
+				<target>Modus Wählen</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.mode.list">
 				<source>List</source>
+				<target>Listenansicht</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.mode.detail">
 				<source>Detail</source>
+				<target>Details</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.feed">
 				<source>Feed</source>
+				<target>Feed</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.listPid">
 				<source>List-PID</source>
+				<target>PID der Listenansicht</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.singlePid">
 				<source>Single-PID</source>
+				<target>PID der Detailansicht</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.pagination">
 				<source>Enable pagination?</source>
+				<target>Pagination aktivieren?</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.perpage">
 				<source>Items per page (defaults to 5)</source>
+				<target>Elemente pro Seite (5 wenn leer)</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.limit">
 				<source>Max Items to Show</source>
+				<target>Max. Anzahl an Elementen</target>
 			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.flexform.templateLayout">
 				<source>Layout</source>
+				<target>Layout</target>
 			</trans-unit>
 		</body>
 	</file>

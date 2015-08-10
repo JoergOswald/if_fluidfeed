@@ -132,8 +132,6 @@ class FeedController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     }
 	}
 
-
-
   /**
    * action detail
    *
@@ -143,58 +141,10 @@ class FeedController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     
     // Determine current mode and load corresponding feed
     $args = $this->request->getArguments();
-    switch($args["mode"]) {
-      case 'events':
-        $mode = "events";
-        $feed = $this->feedRepository->findByUid($this->settings['flexform']['events']);
-        break;
-      case 'customerhouses':
-        $mode = "customerhouses";
-        $feed = $this->feedRepository->findByUid($this->settings['flexform']['customerhousefeed']);
-        break;
-      default:
-        $mode = "info";
-        $feed = $this->feedRepository->findByUid($this->settings['flexform']['feed']);
-    }
-
-    // If not info mode, find out stuetzpunkt ID since we only have the name in the URL
-    if($mode != "info") {
-      $stuetzpunktfeed = $this->feedRepository->findByUid($this->settings['flexform']['feed']);
-      $stuetzpunkte = FeedController::loadFeed($stuetzpunktfeed);
-      if($stuetzpunkte) {
-        $stuetzpunkt = FeedController::filter($stuetzpunkte[$stuetzpunktfeed->getOuterwrapper()][$stuetzpunktfeed->getWrapper()], function($n) use ($id, $stuetzpunktfeed) {
-          return stristr($n[$stuetzpunktfeed->getUidentifier()],$id);
-        });
-
-        if(count($stuetzpunkt) != 1) {
-          $this->view->assign('error', 'Could not reliably find item');
-          return;
-        }
-
-        $item = $stuetzpunkt;
-        $id = $stuetzpunkt[0]["ID"];
-      }
-    }
+    $feed = $this->feedRepository->findByUid($this->settings['feed']);
 
     $rawItems = FeedController::loadFeed($feed);
-    if(!isset($rawItems[$feed->getOuterwrapper()])) {
-      $filter = $rawItems;
-    } else {
-      $filter = $rawItems[$feed->getOuterwrapper()][$feed->getWrapper()];
-    }
-    $rawItems = FeedController::filter($filter, function($n) use ($id, $feed) {
-      return stristr($n[$feed->getUidentifier()],$id);
-    });
-
-    if($mode == "info") {
-      if(count($rawItems) !== 1) {
-        $this->view->assign('error', 'Could not reliably find item');
-        return;
-      }
-      $this->view->assign('item',$rawItems[0]);
-      return;
-    }
-
+    
     $this->view->assign('item',$item[0]);
     $this->view->assign('items',$rawItems);
     $this->view->assign('mode',$mode);
@@ -207,53 +157,44 @@ class FeedController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function listAction() {
 
-		$feed = $this->feedRepository->findByUid($this->settings['flexform']['feed']);
+		$feed = $this->feedRepository->findByUid($this->settings['feed']);
     $args = $this->request->getArguments();
     if($feed) {
       $url = $feed->getUrl();
-      $path = $_SERVER['DOCUMENT_ROOT'].'/typo3temp/tx_iffluidfeed/'.md5($url).'.xml';
-      $content = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($path);
-      if($content) {
-        $xml = simplexml_load_string($content,null,LIBXML_NOCDATA);
-        $itemsArray = FeedController::xmlToArray($xml, true, $feed);
-        $rawItems = $itemsArray[$feed->getOuterwrapper()][$feed->getWrapper()];
-
-        // Search result
-        // TODO: Implement general search function
-        //if($args['sword']) {
-        //  $rawItems = FeedController::filter($rawItems, function($n) use ($args) {
-        //    return stristr($n['value']['title'],$args['sword']) || stristr($n['value']['description'],$args['sword']) || stristr($n['value']['location'],$args['sword']);
-        //  });
-        //}
-
-        if ($this->settings['templateLayout'] == 3) {
-          $date = array();
-          foreach ($rawItems as $key => $row)
-          {
-            $today = date('Y-m-d H:i');
-            if ($today < $row['Datum']['Start']) {
-              $date[$key] = $row['Datum']['Start'];              
-            } else {
-              unset($rawItems[$key]);
-            }
-            
-          }
-          array_multisort($date, SORT_ASC, $rawItems);
-        } else {
-          $city = array();
-          foreach ($rawItems as $key => $row)
-          {
-              $city[$key] = $row['Name'];            
-          }
-          array_multisort($city, SORT_ASC, $rawItems);
+      $isLocal = $feed->getLocalfile();
+      
+      if ($isLocal == 1) {
+        if (substr($url,0,1) !== '/') {
+          $url = '/'.$url;
         }
-        
+        $path = $_SERVER['DOCUMENT_ROOT'].$url;
+      } else {
+        $ext = pathinfo($url, PATHINFO_EXTENSION);
+        if (strlen($ext) == 0) {
+          $ext = $feed->getType();
+        }
+        $path = $_SERVER['DOCUMENT_ROOT'].'/typo3temp/tx_iffluidfeed/'.md5($url).'.'.$ext;
+      }
 
+      $content = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($path);
+
+      if($content) {
+        switch ($feed->getType()) {
+          case "xml":
+            $xml = simplexml_load_string($content,null,LIBXML_NOCDATA);
+            $itemsArray = FeedController::xmlToArray($xml, true, $feed);
+            $rawItems = $itemsArray[$feed->getOuterwrapper()][$feed->getWrapper()];
+            break;
+          case "json":
+            $itemsArray = json_decode($content, true);
+            $rawItems = $itemsArray[$feed->getOuterwrapper()];
+            break;
+        }
         //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($rawItems);
         
         // Current Page
-        if($this->settings["flexform"]["pagination"]) {
-          $perpage = (!empty($this->settings["flexform"]["perpage"])? $this->settings["flexform"]["perpage"] : 5);
+        if($this->settings["pagination"]) {
+          $perpage = (!empty($this->settings["perpage"])? $this->settings["perpage"] : 5);
           $page = (int)$args["page"];
           $offset = ($page > 0) ? ($page-1)* $perpage : 0;
           $slice = array_slice($rawItems, $offset, $perpage);

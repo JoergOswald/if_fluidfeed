@@ -6,11 +6,13 @@ CREATE TABLE tx_iffluidfeed_domain_model_feed (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	title varchar(255) DEFAULT '' NOT NULL,
+	type varchar(255) DEFAULT '' NOT NULL,
 	url varchar(255) DEFAULT '' NOT NULL,
+	localfile tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	wrapper varchar(255) DEFAULT '' NOT NULL,
 	outerwrapper varchar(255) DEFAULT '' NOT NULL,
 	uidentifier varchar(255) DEFAULT '' NOT NULL,
-	realurl varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -37,6 +39,6 @@ CREATE TABLE tx_iffluidfeed_domain_model_feed (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+ 	KEY language (l10n_parent,sys_language_uid)
 
 );

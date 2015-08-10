@@ -8,17 +8,17 @@ if (!defined('TYPO3_MODE')) {
 	'output',
 	array(
 		'Feed' => 'list',
-    'Feed' => 'detail'
+    	'Feed' => 'detail'
 	),
 	// non-cacheable actions
 	array(
 		'Feed' => 'list',
-    'Feed' => 'detail'
+    	'Feed' => 'detail'
 	)
 );
 
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Interfrog\\IfFluidfeed\\Tasks\\CacheXmlTask'] = array(
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Interfrog\\IfFluidfeed\\Tasks\\CacheFeedTask'] = array(
     'extension'        => $_EXTKEY,
-    'title'            => 'Cache XML files',
-    'description'      => 'Caches all xml files as temporary files inside typo3temp',
+    'title'            => 'Cache Feed files',
+    'description'      => 'Caches all feeds as static temporary files inside typo3temp',
 );

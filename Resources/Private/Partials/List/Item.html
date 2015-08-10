@@ -1,0 +1,8 @@
+
+
+<f:if condition="{itemIndex.isFirst}">
+	<f:then>
+		{item -> f:debug()}
+	</f:then>
+</f:if>
+<f:link.page pageUid="{settings.singlePid}" additionalParams="{tx_iffluidfeed_output: '{id: item.Titel}'}">{item.ID}</f:link.page><br>
