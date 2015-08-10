@@ -1,0 +1,15 @@
+
+plugin.tx_iffluidfeed {
+	view {
+		# cat=plugin.tx_iffluidfeed/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:if_fluidfeed/Resources/Private/Templates/
+		# cat=plugin.tx_iffluidfeed/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:if_fluidfeed/Resources/Private/Partials/
+		# cat=plugin.tx_iffluidfeed/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:if_fluidfeed/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_iffluidfeed//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

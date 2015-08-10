@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="de" datatype="plaintext" original="messages" date="2015-01-29T13:58:20Z" product-name="if_fluidfeed">
+		<header/>
+		<body>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed">
+				<source>Feed</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.url">
+				<source>Url</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.wrapper">
+				<source>Wrapper</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.outerwrapper">
+				<source>Outerwrapper</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.uidentifier">
+				<source>Childnode in each element which acts as identifier (for accessing singleview)</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.realurl">
+				<source>Optional: Childnode which is combined with identifier for beautiful seo URLs</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

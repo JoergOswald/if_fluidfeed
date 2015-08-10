@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+<f:section name="main">
+  {settings -> f:debug(title: 'Settings')}
+  {mode -> f:debug(title:'mode')}
+  {item -> f:debug(title:'item')}
+  {items -> f:debug(title:'items')}
+  {error -> f:debug(title:'error')}
+
+
+  <h1>{item.Titel}</h1>
+
+  <!-- Switch {mode} for output! -->
+
+
+  <ul>
+    <li><f:link.page pageUid="{settings.detailPid}" additionalParams="{tx_iffluidfeed_output:'{id: item.Titel}'}">Info</f:link.page></li>
+    <li><f:link.page pageUid="{settings.detailPid}" additionalParams="{tx_iffluidfeed_output:'{id: item.Titel, mode: \'events\'}'}">Events</f:link.page></li>
+    <li><f:link.page pageUid="{settings.detailPid}" additionalParams="{tx_iffluidfeed_output:'{id: item.Titel, mode: \'customerhouses\'}'}">Kundenhäuser</f:link.page></li>
+  </ul>
+</f:section>
