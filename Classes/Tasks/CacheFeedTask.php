@@ -17,7 +17,24 @@
       foreach($feeds as $feed) {
         if ($feed->getLocalfile() == 0) {
           $url = $feed->getUrl();
-          $content = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($feed->getUrl());
+          $method = $feed->getMethod();
+
+          //USED before changed to httpRequest Library
+          //$content = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($feed->getUrl());
+
+          $config = array(
+            'follow_redirects' => TRUE,
+            'strict_redirects' => TRUE
+          );
+          $httpRequest = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Http\HttpRequest');
+          $httpRequest->__construct(
+            $url,
+            $method
+          );
+          // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($httpRequest);
+          $requestResult = $httpRequest->send();
+          $content = $requestResult->getBody();
+
           if($content) {
             $ext = pathinfo($url, PATHINFO_EXTENSION);
             if (strlen($ext) == 0) {

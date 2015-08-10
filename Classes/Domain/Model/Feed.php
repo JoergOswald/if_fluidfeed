@@ -47,6 +47,13 @@ class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $url = '';
 
 	/**
+	 * method
+	 *
+	 * @var string
+	 */
+	protected $method = '';
+
+	/**
 	 * localfile
 	 *
 	 * @var string
@@ -110,6 +117,25 @@ class Feed extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setUrl($url) {
 		$this->url = $url;
+	}
+
+	/**
+	 * Returns the method
+	 *
+	 * @return string $method
+	 */
+	public function getMethod() {
+		return $this->method;
+	}
+
+	/**
+	 * Sets the method
+	 *
+	 * @param string $method
+	 * @return void
+	 */
+	public function setMethod($method) {
+		$this->method = $method;
 	}
 
 	/**

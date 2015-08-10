@@ -9,6 +9,7 @@ CREATE TABLE tx_iffluidfeed_domain_model_feed (
 	title varchar(255) DEFAULT '' NOT NULL,
 	type varchar(255) DEFAULT '' NOT NULL,
 	url varchar(255) DEFAULT '' NOT NULL,
+	method varchar(255) DEFAULT '' NOT NULL,
 	localfile tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	wrapper varchar(255) DEFAULT '' NOT NULL,
 	outerwrapper varchar(255) DEFAULT '' NOT NULL,

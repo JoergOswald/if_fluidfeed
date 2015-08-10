@@ -21,6 +21,15 @@
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.url">
 				<source>Url</source>
 			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.method">
+				<source>Method of request</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.method.get">
+				<source>GET</source>
+			</trans-unit>
+			<trans-unit id="tx_iffluidfeed_domain_model_feed.method.post">
+				<source>POST</source>
+			</trans-unit>
 			<trans-unit id="tx_iffluidfeed_domain_model_feed.localfile">
 				<source>Local File (cache disabled)</source>
 			</trans-unit>
